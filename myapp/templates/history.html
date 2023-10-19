@@ -1,0 +1,41 @@
+{% extends 'base-dashboard.html' %}
+{% block title %}history{% endblock %}
+{% block content %}
+
+<div class="container">
+    
+    <div class="table-responsive" style="padding-top: 8rem;">
+        {% if download_objects %}
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Video Thumbnali</th>
+                <th scope="col">Video Title</th>
+                <th scope="col">Video Url</th>
+                <th scope="col">Download Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for download_object in download_objects %}
+                <td>{{download_object.id}}</td>
+                <td><img src="{{download_object.video_thumbnali}}" alt="" style="width: 150px; height: 130px;"></td>
+                <td>{{download_object.video_title}}</td>
+                <td><a href="{{download_object.video_url}}">{{download_object.video_url}}</a></td>
+                <td>{{download_object.download_date}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <h2>You have not any history yet.download any videos from here to get download history.  </h2>
+        {% endif %}
+    </div>
+    
+
+    
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}signup{% endblock %}
+    {% block content %}
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-6 mx-auto">
+                    <h3 class="text-center custom-h3">Sign Up</h3>
+                    {% include 'messa.html' %}
+                    <form method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                        <div class="mb-3">
+                          <label for="FirstName" class="form-label">*Enter your First Name</label>
+                          <input type="text" class="form-control" id="FirstName" aria-describedby="emailHelp" name="firstname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="LastName" class="form-label">*Enter your Last Name</label>
+                            <input type="text" class="form-control" id="LastName" aria-describedby="emailHelp" name="lastname" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">*Enter your Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+                            
+                          </div>
+                          
+                          <div>
+                          <label for="exampleInputPassword1" class="form-label">*Enter Password</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+                        </div>
+                        <div class="mb-3">
+
+                            <label for="exampleInputPassword2" class="form-label">*Reenter your Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword2" name="re-password" required>
+                          </div>
+                        
+                        <button type="submit" class="btn btn-success w-100">Submit</button>
+                      </form>
+                </div>
+            </div>
+        </div>
+        
+    {% endblock %}
+

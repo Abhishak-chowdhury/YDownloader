@@ -1,0 +1,51 @@
+{% extends 'base-dashboard.html' %}
+{% block title %}download{% endblock %}
+{% block content %}
+<div class="container">
+    
+    
+    <div class="row">
+      {% if is_valid_url %}
+      <div class="col-sm-6 mx-auto pt-5">
+        <!-- 16:9 -->
+        <h3 style="margin-top: 45px; text-align: center; margin-bottom: 10px;">Downloadable Video</h3>
+        <h4 style="font-size: 17px; margin-top: 20px;">Title :{{embeded_title}}</h4>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="{{embeded_link}}"></iframe>
+        </div>
+        <table class="table mt-2">
+            <thead class="thead-dark">
+              
+              <tr>
+                <th scope="col">Size</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Type</th>
+                <th scope="col">Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in video_resolutions %}
+              <tr>
+                <td>{{i.filesize}}byte</td>
+                <td>{{i.resolution}}</td>
+                <td>{{i.type}}</td>
+                <td>
+                  <form action="{% url 'download_vid' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{url}}" name="url">
+                    <input type="hidden" value="{{i.resolution}}" name="res">
+                    <button type="submit" class="btn btn-warning">download</button>
+                  </form>
+                  
+                </td>
+              </tr>
+             {% endfor %}
+            </tbody>
+        </table>
+      </div>
+      {% else %}
+        <h1 style="color: red; margin: 20rem 0rem;">YOUR ENTERED URL IS NOT FROM YOUTUBE.PLEASE PROVIDE A VALID URL AND CONTINUE .</h1>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
